@@ -17,7 +17,7 @@ jobs:
       DOCKER_CLI_EXPERIMENTAL: enabled # for 'docker buildx'
       DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      DOCKER_REPO: wget
+      DOCKER_REPO: netdata/wget
       # We use all platforms for which FROM images in our Dockerfile are
       # available.
       DOCKER_PLATFORMS: >
@@ -40,7 +40,7 @@ jobs:
             # Pushes tag - deploy tag name.
             echo "::set-env name=TAG::${GITHUB_REF/refs\/tags\//}"
           fi
-          echo "::set-env name=DOCKER_BASE::${DOCKER_USER}/${DOCKER_REPO}"
+          echo "::set-env name=DOCKER_BASE::${DOCKER_REPO}"
       - name: Install Docker buildx
         run: |
           set -vx
